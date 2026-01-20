@@ -1,0 +1,50 @@
+---
+import Toggle from "./Toggle.astro";
+import "../styles/global.css";
+---
+
+<header>
+  <h1>Ric5k.dev</h1>
+  <nav class="nav-right">
+    <a href="/">Home</a>
+    <a href="/project">Project</a>
+    <a href="/blog">Blog</a>
+    <a href="/cv">CV</a>
+    <Toggle />
+  </nav>
+</header>
+
+<style>
+  header {
+    font-family: "IBMPlexMonoBold", monospace;
+    padding: 1rem 2rem;
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  /* 右側ナビ用 */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* リンクとトグルの間隔 */
+  }
+
+  .nav-right a {
+    text-decoration: none;
+    color: var(--header-text);
+    font-weight: bold;
+  }
+
+  .nav-right a:hover {
+    color: var(--header-hover);
+    text-decoration: underline;
+  }
+</style>

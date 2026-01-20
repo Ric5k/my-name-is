@@ -1,0 +1,36 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script is:inline>
+      const setDarkMode = () => {
+        const theme = (() => {
+          if (
+            typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")
+          ) {
+            return localStorage.getItem("theme");
+          }
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        })();
+        document.documentElement.classList[theme === "dark" ? "add" : "remove"](
+          "dark",
+        );
+      };
+      setDarkMode();
+      // View Transitionsを使う場合のためのリスナー
+      document.addEventListener("astro:after-swap", setDarkMode);
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,51 @@
+/* src/styles/global.css */
+@font-face {
+  font-family: 'IBMPlexMono';
+  src: url('../assets/fonts/IBMPlexMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBMPlexMonoBold';
+  src: url('../assets/fonts/IBMPlexMono-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- カラー定義 (CSS変数) --- */
+:root {
+  /* Light Mode (One Light風) */
+  --bg-color: #f8fafc;
+  --text-color: #383a42;
+  --accent-color: #fbbf24; /* One Blue */
+  --card-bg: #f0f0f0;
+  --accent-hover: #eab308;
+  --header-text: var(--text-color);
+  --header-hover: var(--accent-hover);
+}
+
+/* Dark Mode (One Dark風) */
+:root.dark {
+  --bg-color: #0a0a0a;        /* One Dark Base */
+  --text-color: #abb2bf;      /* One Dark White */
+  --accent-color: #61afef;    /* One Dark Blue */
+  --card-bg: #21252b;     
+  --accent-hover: #61afef;
+  --header-text: var(--text-color);
+  --header-hover: var(--accent-hover);
+}
+
+/* --- 3. 基本スタイルの適用 --- */
+html {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'IBMPlexMono', monospace;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3 {
+  color: var(--accent-color);
+  font-family: 'IBMPlexMonoBold', monospace;
+}

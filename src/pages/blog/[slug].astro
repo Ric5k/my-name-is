@@ -1,0 +1,109 @@
+---
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout>
+  <Header />
+
+  <main class="post-wrapper">
+    <article class="post">
+      <header class="post-header">
+        <h1>{post.data.title}</h1>
+        {
+          post.data.description && (
+            <p class="description">{post.data.description}</p>
+          )
+        }
+        <time class="date">
+          {post.data.date.toLocaleDateString()}
+        </time>
+      </header>
+
+      <div class="post-content">
+        <Content />
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  /* 全体中央寄せ */
+  .post-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+  }
+
+  /* 記事本体 */
+  .post {
+    width: 100%;
+    max-width: 720px;
+  }
+
+  /* ヘッダー */
+  .post-header {
+    margin-bottom: 3rem;
+  }
+
+  .post-header h1 {
+    font-family: "IBMPlexMono", monospace;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 1.3;
+    margin-bottom: 0rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 0.75rem;
+  }
+
+  .date {
+    font-size: 0.85rem;
+    color: #999;
+  }
+
+  /* 本文 */
+  .post-content :global(p) {
+    line-height: 1.8;
+    margin: 1.2rem 0;
+  }
+
+  .post-content :global(h2) {
+    margin-top: 3rem;
+    font-size: 1.6rem;
+  }
+
+  .post-content :global(h3) {
+    margin-top: 2rem;
+    font-size: 1.3rem;
+  }
+
+  /* コードブロック */
+  .post-content :global(pre) {
+    padding: 1rem 1.2rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+  }
+
+  /* インラインコード */
+  .post-content :global(code) {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+  }
+</style>

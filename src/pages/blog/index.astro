@@ -1,0 +1,91 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+
+const visiblePosts = posts
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout>
+  <Header />
+
+  <main class="timeline-wrapper">
+    <h1>BlOG</h1>
+
+    <ul class="timeline">
+      {
+        visiblePosts.map((post) => (
+          <li class="timeline-item">
+            <span class="dot" />
+
+            <time class="date">{post.data.date.toLocaleDateString()}</time>
+
+            <a class="title" href={`/blog/${post.id}`}>
+              {post.data.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Layout>
+
+<style>
+  /* 全体 */
+  .timeline-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+
+  /* タイムライン */
+  .timeline {
+    position: relative;
+    list-style: none;
+    padding-left: 2.5rem;
+    margin: 2rem 0 0;
+  }
+
+  /* 縦線 */
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #050505;
+  }
+
+  /* 各アイテム */
+  .timeline-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 1rem;
+  }
+
+  /* 日付 */
+  .date {
+    display: block;
+    font-size: 1.5rem;
+    color: #888;
+    margin-bottom: 0.25rem;
+  }
+
+  /* タイトル */
+  .title {
+    font-size: 2rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .title:hover {
+    text-decoration: underline;
+  }
+</style>
