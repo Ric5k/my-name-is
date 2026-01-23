@@ -1,4 +1,5 @@
-/* src/styles/global.css */
+@import "tailwindcss";
+/* 1. フォント定義 */
 @font-face {
   font-family: 'IBMPlexMono';
   src: url('../assets/fonts/IBMPlexMono-Regular.ttf') format('truetype');
@@ -14,38 +15,51 @@
   font-display: swap;
 }
 
-/* --- カラー定義 (CSS変数) --- */
+/* 2. Tailwind v4 テーマ定義
+   ここに書くと `text-accent` や `font-mono` などのクラスが生成されます */
+@theme {
+  --font-mono: "IBMPlexMono", monospace;
+  --font-mono-bold: "IBMPlexMonoBold", monospace;
+
+  --color-bg: var(--bg-color);
+  --color-text: var(--text-color);
+  --color-accent: var(--accent-color);
+  --color-card: var(--card-bg);
+  --color-accent-hover: var(--accent-hover);
+}
+
+/* 3. 変数定義とダークモード */
 :root {
-  /* Light Mode (One Light風) */
   --bg-color: #f8fafc;
   --text-color: #383a42;
-  --accent-color: #fbbf24; /* One Blue */
+  --accent-color: #fbbf24;
   --card-bg: #f0f0f0;
   --accent-hover: #eab308;
-  --header-text: var(--text-color);
-  --header-hover: var(--accent-hover);
 }
 
-/* Dark Mode (One Dark風) */
+/* Tailwind v4のデフォルト設定に合わせて .dark クラスで切り替え */
+@variant dark (&:where(.dark, .dark *));
+
 :root.dark {
-  --bg-color: #0a0a0a;        /* One Dark Base */
-  --text-color: #abb2bf;      /* One Dark White */
-  --accent-color: #61afef;    /* One Dark Blue */
-  --card-bg: #21252b;     
+  --bg-color: #0a0a0a;
+  --text-color: #abb2bf;
+  --accent-color: #61afef;
+  --card-bg: #21252b;
   --accent-hover: #61afef;
-  --header-text: var(--text-color);
-  --header-hover: var(--accent-hover);
 }
 
-/* --- 3. 基本スタイルの適用 --- */
-html {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: 'IBMPlexMono', monospace;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+/* 4. 基本スタイルの適用 */
+@layer base {
+  html {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-mono);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 
-h1, h2, h3 {
-  color: var(--accent-color);
-  font-family: 'IBMPlexMonoBold', monospace;
+  h1, h2, h3 {
+    font-size: 90;
+    color: var(--accent-color);
+    font-family: var(--font-mono-bold);
+  }
 }

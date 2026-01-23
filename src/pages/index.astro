@@ -2,53 +2,9 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Layout from "../layouts/Layout.astro";
-
-const title = "My Kanagawa Portfolio🚀";
 ---
 
 <Layout>
   <Header />
-
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <h1>{title}</h1>
-    </section>
-
-    <!-- 下に続くコンテンツ用 -->
-    <section class="content">
-      <!-- ここに記事や紹介を書く -->
-    </section>
-  </main>
-
   <Footer />
 </Layout>
-
-<style>
-  /* =========================
-     Hero（文字主役）
-     ========================= */
-
-  .hero {
-    padding: clamp(3rem, 8vw, 8rem) 2rem;
-  }
-
-  .hero h1 {
-    max-width: 14ch;
-    font-size: clamp(3rem, 12vw, 9rem);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    font-weight: 700;
-
-    color: var(--accent-color);
-  }
-
-  /* =========================
-     Content placeholder
-     ========================= */
-
-  .content {
-    padding: 4rem 2rem;
-    max-width: 720px;
-  }
-</style>

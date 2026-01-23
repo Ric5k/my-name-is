@@ -3,38 +3,14 @@ import Header from "../../components/Header.astro";
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout>
+<Layout title="PROJECTS">
   <Header />
 
-  <main class="timeline-wrapper">
-    <h1>PROJECT</h1>
-    <p>Coming Soon...</p>
+  <main class="max-w-180 mx-auto px-6 py-12">
+    <h1 class="text-4xl font-mono-bold mb-8 text-accent">PROJECT</h1>
+
+    <div class="py-4">
+      <p class="text-xl font-mono text-text/50 animate-pulse">Coming Soon...</p>
+    </div>
   </main>
 </Layout>
-<style>
-  /* 全体 */
-  .timeline-wrapper {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem;
-  }
-
-  /* タイムライン */
-  .timeline {
-    position: relative;
-    list-style: none;
-    padding-left: 2.5rem;
-    margin: 2rem 0 0;
-  }
-
-  /* 縦線 */
-  .timeline::before {
-    content: "";
-    position: absolute;
-    left: 6px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #dcd7ba;
-  }
-</style>

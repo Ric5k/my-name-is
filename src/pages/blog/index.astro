@@ -10,21 +10,28 @@ const visiblePosts = posts
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<Layout>
+<Layout title="BLOG">
   <Header />
 
-  <main class="timeline-wrapper">
-    <h1>BlOG</h1>
+  <main class="max-w-180 mx-auto px-6 py-12">
+    <h1 class="text-4xl font-mono-bold mb-8 text-accent">BLOG</h1>
 
-    <ul class="timeline">
+    <ul
+      class="relative ml-1.5 border-l-2 border-text/20 py-2 flex flex-col gap-10"
+    >
       {
         visiblePosts.map((post) => (
-          <li class="timeline-item">
-            <span class="dot" />
+          <li class="relative pl-8 flex flex-col md:flex-row md:items-baseline md:gap-6 group">
+            <div class="absolute -left-2.25 top-3 w-4 h-4 rounded-full bg-bg border-2 border-accent group-hover:bg-accent transition-colors" />
 
-            <time class="date">{post.data.date.toLocaleDateString()}</time>
+            <time class="text-xl font-mono text-text/50 shrink-0">
+              {post.data.date.toLocaleDateString()}
+            </time>
 
-            <a class="title" href={`/blog/${post.id}`}>
+            <a
+              href={`/blog/${post.id}`}
+              class="text-2xl font-mono-bold hover:text-accent hover:underline decoration-2 underline-offset-4 transition-all"
+            >
               {post.data.title}
             </a>
           </li>
@@ -33,59 +40,3 @@ const visiblePosts = posts
     </ul>
   </main>
 </Layout>
-
-<style>
-  /* 全体 */
-  .timeline-wrapper {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem;
-  }
-
-  /* タイムライン */
-  .timeline {
-    position: relative;
-    list-style: none;
-    padding-left: 2.5rem;
-    margin: 2rem 0 0;
-  }
-
-  /* 縦線 */
-  .timeline::before {
-    content: "";
-    position: absolute;
-    left: 6px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #050505;
-  }
-
-  /* 各アイテム */
-  .timeline-item {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding-left: 1rem;
-  }
-
-  /* 日付 */
-  .date {
-    display: block;
-    font-size: 1.5rem;
-    color: #888;
-    margin-bottom: 0.25rem;
-  }
-
-  /* タイトル */
-  .title {
-    font-size: 2rem;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .title:hover {
-    text-decoration: underline;
-  }
-</style>
