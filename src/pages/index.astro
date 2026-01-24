@@ -1,10 +1,39 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import Layout from "../layouts/Layout.astro";
+const experiences = [
+  {
+    date: "2024.04",
+    title: "Data Engineer at Tech Corp",
+    description: "Built modern ETL pipelines using uv, Polars, and DuckDB.",
+  },
+];
 ---
 
-<Layout>
-  <Header />
-  <Footer />
+<Layout title="Home">
+  <main class="grow max-w-180 mx-auto px-6 py-12">
+    <h1 class="text-4xl font-mono-bold mb-8 text-accent">EXPERIENCE</h1>
+
+    <ul
+      class="relative ml-1.5 border-l-2 border-text/20 py-2 flex flex-col gap-10"
+    >
+      {
+        experiences.map((exp) => (
+          <li class="relative pl-8 flex flex-col md:flex-row md:items-baseline md:gap-6 group">
+            <div class="absolute -left-2.25 top-3 w-4 h-4 rounded-full bg-bg border-2 border-accent group-hover:bg-accent transition-colors" />
+
+            <time class="text-xl font-mono text-text/50 shrink-0 min-w-35">
+              {exp.date}
+            </time>
+
+            <div class="flex flex-col gap-1">
+              <h2 class="text-2xl font-mono-bold text-text group-hover:text-accent transition-all">
+                {exp.title}
+              </h2>
+              <p class="text-text/70 font-mono text-sm">{exp.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
 </Layout>

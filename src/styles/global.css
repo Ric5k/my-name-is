@@ -1,5 +1,4 @@
 @import "tailwindcss";
-/* 1. フォント定義 */
 @font-face {
   font-family: 'IBMPlexMono';
   src: url('../assets/fonts/IBMPlexMono-Regular.ttf') format('truetype');
@@ -15,12 +14,9 @@
   font-display: swap;
 }
 
-/* 2. Tailwind v4 テーマ定義
-   ここに書くと `text-accent` や `font-mono` などのクラスが生成されます */
 @theme {
   --font-mono: "IBMPlexMono", monospace;
   --font-mono-bold: "IBMPlexMonoBold", monospace;
-
   --color-bg: var(--bg-color);
   --color-text: var(--text-color);
   --color-accent: var(--accent-color);
@@ -28,27 +24,24 @@
   --color-accent-hover: var(--accent-hover);
 }
 
-/* 3. 変数定義とダークモード */
 :root {
   --bg-color: #f8fafc;
   --text-color: #383a42;
-  --accent-color: #fbbf24;
+  --accent-color: #0a0a0a;
   --card-bg: #f0f0f0;
-  --accent-hover: #eab308;
+  --accent-hover: #0a0a0a;
 }
 
-/* Tailwind v4のデフォルト設定に合わせて .dark クラスで切り替え */
 @variant dark (&:where(.dark, .dark *));
 
 :root.dark {
   --bg-color: #0a0a0a;
   --text-color: #abb2bf;
-  --accent-color: #61afef;
+  --accent-color: #ffffff;
   --card-bg: #21252b;
-  --accent-hover: #61afef;
+  --accent-hover: #ffffff;
 }
 
-/* 4. 基本スタイルの適用 */
 @layer base {
   html {
     background-color: var(--bg-color);
@@ -58,7 +51,6 @@
   }
 
   h1, h2, h3 {
-    font-size: 90;
     color: var(--accent-color);
     font-family: var(--font-mono-bold);
   }

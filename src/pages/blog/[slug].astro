@@ -1,5 +1,4 @@
 ---
-import Header from "../../components/Header.astro";
 import Layout from "../../layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
 
@@ -16,12 +15,10 @@ const { Content } = await render(post);
 ---
 
 <Layout title={post.data.title}>
-  <Header />
-
   <main class="flex justify-center px-6 py-12">
-    <article class="w-full max-w-(--spacing-180)">
-      <header class="mb-12">
-        <h1 class="text-5xl leading-tight mb-2 text-accent">
+    <article class="w-full max-w-180 mx-auto text-center)">
+      <header class="mb-12 pb-8 border-b-2 border-text/10">
+        <h1 class="text-5xl leading-tight mb-2 text-accent mx-auto">
           {post.data.title}
         </h1>
         {
@@ -29,7 +26,7 @@ const { Content } = await render(post);
             <p class="text-lg text-text/70 mb-3">{post.data.description}</p>
           )
         }
-        <time class="text-sm text-text/50">
+        <time class="text-sm text-text/50 block">
           {post.data.date.toLocaleDateString()}
         </time>
       </header>

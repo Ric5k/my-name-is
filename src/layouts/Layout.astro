@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro"; // 1. Footerを読み込む
 
 interface Props {
   title?: string;
@@ -13,9 +15,7 @@ const { title = "My Site" } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
@@ -40,7 +40,11 @@ const { title = "My Site" } = Astro.props;
       document.addEventListener("astro:after-swap", setDarkMode);
     </script>
   </head>
-  <body class="bg-bg text-text transition-colors duration-300">
+  <body
+    class="bg-bg text-text transition-colors duration-300 flex flex-col min-h-screen"
+  >
+    <Header />
     <slot />
+    <Footer />
   </body>
 </html>
