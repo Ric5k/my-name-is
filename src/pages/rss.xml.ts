@@ -8,7 +8,7 @@ export async function GET() {
   });
 
   return rss({
-    title: "My Kanagawa Portfolio Blog",
+    title: "my-name-is",
     description: "Notes on web development, Astro, and learning in public.",
     site: "https://your-domain.com", // ← 必ず本番URLに
     items: posts
