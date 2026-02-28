@@ -13,13 +13,10 @@ const visiblePosts = posts
   <main class="grow max-w-180 mx-auto px-6 py-12">
     <h1 class="text-[32px] font-mono-bold mb-8 text-accent">BLOG</h1>
 
-    <ul
-      class="relative ml-2 border-l border-text/20 py-2 flex flex-col gap-10"
-    >
+    <ul class="relative ml-2 border-l border-text/20 py-2 flex flex-col gap-10">
       {
         visiblePosts.map((post) => (
           <li class="relative pl-8 flex flex-col md:flex-row md:items-baseline md:gap-6 group">
-            <div class="absolute -left-2 top-2 w-4 h-4 rounded-full bg-bg border border-accent group-hover:bg-accent transition-colors" />
 
             <time class="text-base font-mono text-text/50 shrink-0">
               {post.data.date.toLocaleDateString()}

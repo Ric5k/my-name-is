@@ -2,9 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 const experiences = [
   {
-    date: "2024.04",
-    title: "Data Engineer at Tech Corp",
-    description: "Built modern ETL pipelines using uv, Polars, and DuckDB.",
+    date: "2026.04",
+    title: "?",
+    description: "?",
   },
 ];
 ---
@@ -19,7 +19,6 @@ const experiences = [
       {
         experiences.map((exp) => (
           <li class="relative pl-8 flex flex-col md:flex-row md:items-baseline md:gap-6 group">
-            <div class="absolute -left-2 top-2 w-4 h-4 rounded-full bg-bg border border-accent group-hover:bg-accent transition-colors" />
 
             <time class="text-base font-mono text-text/50 shrink-0 min-w-32">
               {exp.date}
